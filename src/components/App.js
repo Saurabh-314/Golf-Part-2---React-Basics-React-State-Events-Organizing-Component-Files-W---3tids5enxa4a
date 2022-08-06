@@ -18,7 +18,7 @@ const App = () => {
     setX(0);
     
   };
-  // const renderChoice = () => {}
+  const renderChoice = () => {}
   const clickHandler = (e) => {
     if (e.key === "ArrowUp") {
       setY(y - 5);
@@ -52,7 +52,7 @@ const App = () => {
       <button onClick={reset} className="reset">
         Reset
       </button>
-      {/* {renderBall && renderChoice()} */}
+      {renderBall && renderChoice()}
     </div>
   );
 };
