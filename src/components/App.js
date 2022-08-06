@@ -13,43 +13,46 @@ const App = () => {
     setRenderBall(true)
   };
   const reset = () => {
-    setRenderBall(false)
+    setRenderBall(false);
+    setY(0);
+    setX(0);
+    
   };
-  const renderChoice = () => {
-    // console.log("i am render choice");
-    document.addEventListener('keydown', (e) => {
-      if (e.key === "ArrowUp"){
-        // console.log("Up")
-        setY(y-5);
-      } 
-      if (e.key === "ArrowDown"){
-        // console.log("Down")
-        setY(y+5);
-      } 
-      if (e.key === "ArrowLeft"){
-        // console.log("left")
-        setX(x-5);
-      }
-      if (e.key === "ArrowRight"){
-        // console.log("right")
-        setX(x+5);
-      }
-    })
+  // const renderChoice = () => {}
+  const clickHandler = (e) => {
+    if (e.key === "ArrowUp") {
+      setY(y - 5);
+    }
+    else if (e.key === "ArrowDown") {
+      setY(y + 5);
+    }
+    else if (e.key === "ArrowLeft") {
+      setX(x - 5);
+    }
+    else if (e.key === "ArrowRight") {
+      setX(x + 5);
+    }
+  }
 
-  };
+  React.useEffect(() => {
+    setBallPosition({
+      left: `${x}px`,
+      top: `${y}px`,
+    })
+  }, [x, y])
 
   return (
-    <div className="playground">
-      <button 
-      onClick={start} 
-      className={renderBall ? "ball" : "start"} 
-      style={{ left: `${x}px`, top: `${y}px` }}>
+    <div onKeyDown={renderBall ? clickHandler: null} className="playground">
+      <button
+        onClick={start}
+        className={renderBall ? "ball" : "start"}
+        style={ballPosition}>
         Start
       </button>
       <button onClick={reset} className="reset">
         Reset
       </button>
-      {renderBall && renderChoice()}
+      {/* {renderBall && renderChoice()} */}
     </div>
   );
 };
