@@ -18,8 +18,7 @@ const App = () => {
     setX(0);
     
   };
-  const renderChoice = () => {}
-  const clickHandler = (e) => {
+  const renderChoice = (e) => {
     if (e.key === "ArrowUp") {
       setY(y - 5);
     }
@@ -34,25 +33,18 @@ const App = () => {
     }
   }
 
-  React.useEffect(() => {
-    setBallPosition({
-      left: `${x}px`,
-      top: `${y}px`,
-    })
-  }, [x, y])
-
   return (
-    <div onKeyDown={renderBall ? clickHandler: null} className="playground">
+    <div onKeyDown={renderChoice} className="playground">
       <button
         onClick={start}
         className={renderBall ? "ball" : "start"}
-        style={ballPosition}>
+        style={{ left: `${x}px`, top: `${y}px` }}>
         Start
       </button>
       <button onClick={reset} className="reset">
         Reset
       </button>
-      {renderBall && renderChoice()}
+      {/* {renderBall && renderChoice()} */}
     </div>
   );
 };
